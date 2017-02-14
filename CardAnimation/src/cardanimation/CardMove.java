@@ -38,8 +38,8 @@ public class CardMove implements CardStrategy
         tmp_random=(x=(int) ((Math.random()*100)%4)*4)>0?x:2;
         tmp1_random=(x=(int) ((Math.random()*100)%4)*5)>0?x:3;
         playerdeck[i][0]=deck[random];
-        playerdeck[i][1]=Integer.toString(tmp_random);
-        playerdeck[i][2]=Integer.toString(tmp1_random);
+        playerdeck[i][1]=Integer.toString(tmp_random); // as hammer
+        playerdeck[i][2]=Integer.toString(tmp1_random); // as life
         System.out.println(playerdeck[i][0]+" "+playerdeck[i][1]+ " " + playerdeck[i][2]);
         }
        
