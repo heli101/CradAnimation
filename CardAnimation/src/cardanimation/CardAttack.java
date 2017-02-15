@@ -12,6 +12,7 @@ package cardanimation;
 public class CardAttack extends CardMove
 {
      int player_attack_pt=0 , cpu_attack_pt=0;
+     String deck[]={"Alchohol","blugerees","sport","music","restaurant"};
     int i,j;
     CardMove cm=new CardMove();
 
@@ -29,17 +30,19 @@ public class CardAttack extends CardMove
     {
        
         int tmp_select=c.selectedchoice;
+        int tmp1_select = c.selectedchoice;
         
         System.out.println(tmp_select);
         String s[][]=c.getCurrentplayerdeck();
         String s1[][]=c.getCurrentcpudeck();
         System.out.println(s[tmp_select-1][0]+" "+s[tmp_select-1][1]+" "+s[tmp_select-1][2]);
         System.out.println(s1[tmp_select-1][0]+" "+s1[tmp_select-1][1]+ " "+s1[tmp_select][2]);
+        int random=(int) ((Math.random()*100)%5);
         if(c.getCpulife()<=0)
         {
             System.out.println("CONGRATS..GAME OVER...YOU WON!!!");
         }
-        else if(s[tmp_select-1][0]== "alchohol")
+        else if(s[tmp_select-1][0].equals(deck[random]))
         {
             if(s[tmp_select-1][1] == s1[tmp_select-1][2])
             {
@@ -52,9 +55,14 @@ public class CardAttack extends CardMove
             c.setCpulife(c.getCpulife()-(Integer.parseInt(s[tmp_select-1][1])+player_attack_pt));
             }
         }
-        else if(s[tmp_select-1][1] == "alchohol" && s[tmp_select-1][1] == "sport")
+        else{
+                random=(int) ((Math.random()*100)%5);
+                int temp =(int) ((Math.random()*100)%5);
+        
+         if(s[tmp_select-1][1].equals(deck[random]) && s[tmp1_select-1][1].equals(temp))
         {
-            System.out.println("generate new deck" + c.cpudeck);
+            Card cr = new Card();
+            System.out.println("generate new deck" + c.playerdeck);
             if(s[tmp_select-1][1] == s1[tmp_select-1][2])
             {
                 System.out.println("oppnent card will be kill by player");
@@ -65,6 +73,7 @@ public class CardAttack extends CardMove
               
             c.setCpulife(c.getCpulife()-(Integer.parseInt(s[tmp_select-1][1])+player_attack_pt));
             }
+        }
         }
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -82,7 +91,7 @@ public class CardAttack extends CardMove
         {
             System.out.println("CONGRATS..GAME OVER...YOU WON!!!");
         }
-        else if(cpu[k][0]== "alchohol")
+        else if(cpu[k][0].equals(deck[random]))
         {
             if(cpu[k][1] == player[k][2])
             {
@@ -95,7 +104,12 @@ public class CardAttack extends CardMove
             c.setCpulife(c.getCpulife()-(Integer.parseInt(cpu[k][1])+player_attack_pt));
             }
         }
-        else if(cpu[k][1] == "alchohol" && cpu[k][1] == "sport")
+        else {
+            random=(int) ((Math.random()*100)%5);
+                int temp =(int) ((Math.random()*100)%5);
+            
+        
+            if(cpu[k][1].equals(deck[random]) && cpu[k][1].equals(temp))
         {
             System.out.println("generate new deck" + c.cpudeck);
             if(cpu[k][1] == player[k][2])
@@ -108,6 +122,7 @@ public class CardAttack extends CardMove
               
             c.setCpulife(c.getCpulife()-(Integer.parseInt(cpu[k][1])+player_attack_pt));
             }
+        }
         }
   //      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
