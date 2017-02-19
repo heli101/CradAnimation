@@ -6,6 +6,7 @@
 package cardanimation;
 
 
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -14,10 +15,10 @@ import java.util.Scanner;
  */
 public class CardPlayer {
     int cntr=5;
-  CardPlayer(){
+ public CardPlayer(){
     
     beginBattle();
-    }
+    } 
   Card c=new Card();
   
   public void beginBattle()
@@ -29,7 +30,7 @@ public class CardPlayer {
   CardAttack ca=new CardAttack();
   ca.genDeck(c);
   String s[][]=c.getCurrentplayerdeck();
-  
+  String s1[][] = c.getCurrentcpudeck();
   System.out.println("Select the card listed below to Attack..");
   for(int k=0;k<25;k++)
   {
@@ -71,6 +72,14 @@ public class CardPlayer {
       }
  
   System.out.println();
+  System.out.println("Point Record:");
+      for(Map.Entry<String,Integer> pair : CardAttack.pointMap.entrySet()){
+            System.out.println("Player : "+ pair.getKey()+" Points : "+ pair.getValue() );
+      }
+      
+      String win =CardAttack.winner;
+        System.out.println("winer"+win);
   }
+  
   
   }
