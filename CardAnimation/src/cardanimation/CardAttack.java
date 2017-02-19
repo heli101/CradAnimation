@@ -5,6 +5,9 @@
  */
 package cardanimation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author heli1
@@ -14,6 +17,8 @@ public class CardAttack extends CardMove
      int player_attack_pt=0 , cpu_attack_pt=0;
      String deck[]={"Alchohol","blugerees","sport","music","restaurant"};
     int i,j;
+    public static Map<String,Integer> pointMap = new HashMap<String,Integer>();
+    public static String winner = "";
     CardMove cm=new CardMove();
 
     public void genDeck(Card c) 
@@ -33,6 +38,7 @@ public class CardAttack extends CardMove
         int tmp1_select = c.selectedchoice;
         
         System.out.println(tmp_select);
+        System.out.println(tmp1_select);
         String s[][]=c.getCurrentplayerdeck();
         String s1[][]=c.getCurrentcpudeck();
         System.out.println(s[tmp_select-1][0]+" "+s[tmp_select-1][1]+" "+s[tmp_select-1][2]);
@@ -41,6 +47,7 @@ public class CardAttack extends CardMove
         if(c.getCpulife()<=0)
         {
             System.out.println("CONGRATS..GAME OVER...YOU WON!!!");
+            winner = "player1";
         }
         else if(s[tmp_select-1][0].equals(deck[random]))
         {
@@ -53,9 +60,12 @@ public class CardAttack extends CardMove
             System.out.println("draining the opponent's life" + (Integer.parseInt(s[tmp_select-1][1])+player_attack_pt)+" points");
               
             c.setCpulife(c.getCpulife()-(Integer.parseInt(s[tmp_select-1][1])+player_attack_pt));
+             System.out.println("Player-Current life:--> " + c.getPlayerlife() + "  CPU-Current life:--> " + c.getCpulife());
+             pointMap.put("Player1",c.getPlayerlife() );
+             pointMap.put("Computer",c.getCpulife());
             }
         }
-        else{
+        else {
                 random=(int) ((Math.random()*100)%5);
                 int temp =(int) ((Math.random()*100)%5);
         
@@ -72,6 +82,10 @@ public class CardAttack extends CardMove
             System.out.println("draining the opponent's life" + (Integer.parseInt(s[tmp_select-1][1])+player_attack_pt)+" points");
               
             c.setCpulife(c.getCpulife()-(Integer.parseInt(s[tmp_select-1][1])+player_attack_pt));
+          //  c.setPlayerlife(playerlife);
+             System.out.println("Player-Current life:--> " + c.getPlayerlife() + "  CPU-Current life:--> " + c.getCpulife());
+             pointMap.put("Player1",c.getPlayerlife() );
+                pointMap.put("Computer",c.getCpulife());
             }
         }
         }
@@ -99,9 +113,12 @@ public class CardAttack extends CardMove
             }
             else
             {
-            System.out.println("draining the opponent's life" + (Integer.parseInt(cpu[k-1][1])+player_attack_pt)+" points");
+            System.out.println("draining the player's life" + (Integer.parseInt(cpu[k-1][1])+cpu_attack_pt)+" points");
               
-            c.setCpulife(c.getCpulife()-(Integer.parseInt(cpu[k][1])+player_attack_pt));
+            c.setPlayerlife(c.getCpulife()-(Integer.parseInt(cpu[k][1])+cpu_attack_pt));
+            System.out.println("Player-Current life:--> " + c.getPlayerlife() + "  CPU-Current life:--> " + c.getCpulife());
+             pointMap.put("Player1",c.getPlayerlife() );
+             pointMap.put("Computer",c.getCpulife());
             }
         }
         else {
@@ -118,9 +135,12 @@ public class CardAttack extends CardMove
             }
             else
             {
-            System.out.println("draining the opponent's life" + (Integer.parseInt(cpu[k][1])+player_attack_pt)+" points");
+            System.out.println("draining the player's life" + (Integer.parseInt(cpu[k][1])+player_attack_pt)+" points");
               
-            c.setCpulife(c.getCpulife()-(Integer.parseInt(cpu[k][1])+player_attack_pt));
+            c.setPlayerlife(c.getCpulife()-(Integer.parseInt(cpu[k][1])+player_attack_pt));
+            System.out.println("Player-Current life:--> " + c.getPlayerlife() + "  CPU-Current life:--> " + c.getCpulife());
+             pointMap.put("Player1",c.getPlayerlife() );
+             pointMap.put("Computer",c.getCpulife());
             }
         }
         }
